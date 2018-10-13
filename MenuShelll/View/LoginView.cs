@@ -1,4 +1,5 @@
 ﻿using System;
+using MenuShell.Service;
 
 namespace MenuShell.View
 {
@@ -22,21 +23,31 @@ namespace MenuShell.View
                 Console.WriteLine("\nIs this correct? (Y)es (N)o");
                 var keyInfo = Console.ReadKey(true);
 
+                var authenticationService = new AuthenticationService();
+
+                var user = authenticationService.Authenticate(username, password);
+
                 if (keyInfo.Key == ConsoleKey.Y)
                 {
-
+                    if (username == user.UserName && password == user.Password)
+                    {
+                        loginSucceded = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid username and/or password");
+                    }
                 }
                 else if(keyInfo.Key == ConsoleKey.N)
                 {
-                    Console.WriteLine("Näähee");
+                    Environment.Exit(0);
                 }
                 else
                 {
-                    Console.WriteLine("Wrong username or password or both. Try again!");
+                    Console.WriteLine("Access denied!");
                 }
 
             } while (!loginSucceded);
-
             Console.WriteLine("\nLogin Succeded!");
             Console.ReadKey();
             return "";

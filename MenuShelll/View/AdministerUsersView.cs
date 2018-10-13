@@ -1,16 +1,22 @@
-﻿using MenuShell.View;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace MenuShell.View
 {
-    class SystemAdministrator : ConsoleView
+    class AdministerUsersView : ConsoleView
     {
         public override string Display()
         {
-            base.Display();
+            Console.WriteLine("1. Add user");
+            Console.WriteLine("2. Remove user");
 
-            Console.WriteLine("(1) Administer users");
-            Console.WriteLine("(2) Exit");
+            Console.WriteLine(">");
+
+            Console.WriteLine("Esc to return to main view.");
 
             var consoleKeyInfo = Console.ReadKey(true);
 
@@ -23,9 +29,8 @@ namespace MenuShell.View
                 default:
                     return "";
             }
-            return "";
 
-            //switch 
+            return "";
         }
     }
 }

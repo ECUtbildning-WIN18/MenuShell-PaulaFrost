@@ -6,7 +6,6 @@
         public string Password { get; }
         public string Role { get; }
         
-
         public User(string username, string password, string role)
         {
             UserName = username;

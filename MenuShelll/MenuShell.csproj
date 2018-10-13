@@ -52,6 +52,9 @@
     <Compile Include="Service\IAuthenticationService.cs" />
     <Compile Include="Service\IUserLoader.cs" />
     <Compile Include="Service\UserLoader.cs" />
+    <Compile Include="View\AddUserView.cs" />
+    <Compile Include="View\AdministerUsersView.cs" />
+    <Compile Include="View\BaseView.cs" />
     <Compile Include="View\ConsoleView.cs" />
     <Compile Include="View\CreateUserView.cs" />
     <Compile Include="View\LoginView.cs" />
