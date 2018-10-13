@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace MenuShelll.Service
+namespace MenuShell.Service
 {
-    class UserLoader
+    class UserLoader : IUserLoader 
     {
         public List<User> LoadUsers()
         {

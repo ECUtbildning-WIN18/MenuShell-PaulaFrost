@@ -1,7 +1,7 @@
 ﻿using MenuShell.View;
 using System;
 
-namespace MenuShelll.View
+namespace MenuShell.View
 {
     class SystemAdministrator : ConsoleView
     {
@@ -12,8 +12,9 @@ namespace MenuShelll.View
             Console.WriteLine("(1) Add user");
             Console.WriteLine("(2) Exit");
 
-
             return "";
+
+            //switch 
         }
     }
 }

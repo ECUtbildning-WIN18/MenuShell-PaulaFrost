@@ -1,7 +1,7 @@
 ﻿using MenuShell.View;
 using System;
 
-namespace MenuShelll.View
+namespace MenuShell.View
 {
     class ReceptionistMainMenueView : ConsoleView
     {

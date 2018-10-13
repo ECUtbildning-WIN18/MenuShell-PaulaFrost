@@ -1,6 +1,6 @@
 ﻿using MenuShell.View;
 
-namespace MenuShelll.View
+namespace MenuShell.View
 {
     class CreateUserView : ConsoleView
     {

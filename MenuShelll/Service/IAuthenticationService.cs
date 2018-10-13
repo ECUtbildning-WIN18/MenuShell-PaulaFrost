@@ -1,6 +1,6 @@
 ﻿using MenuShell.Domain;
 
-namespace MenuShelll.Service
+namespace MenuShell.Service
 {
     interface IAuthenticationService
     {

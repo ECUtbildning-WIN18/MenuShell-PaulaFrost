@@ -1,7 +1,7 @@
 ﻿using MenuShell.Domain;
 using System.Collections.Generic;
 
-namespace MenuShelll.Service
+namespace MenuShell.Service
 {
     interface IUserLoader
     {

@@ -5,10 +5,11 @@
         public string UserName { get; }
         public string Password { get; }
         public string Role { get; }
+        
 
-        public User(string userName, string password, string role)
+        public User(string username, string password, string role)
         {
-            UserName = userName;
+            UserName = username;
             Password = password;
             Role = role;
         }

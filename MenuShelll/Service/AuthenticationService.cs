@@ -1,7 +1,7 @@
 ﻿using MenuShell.Domain;
 using System.Linq;
 
-namespace MenuShelll.Service
+namespace MenuShell.Service
 {
     class AuthenticationService : IAuthenticationService
     {
@@ -18,7 +18,7 @@ namespace MenuShelll.Service
 
             var users = userLoader.LoadUsers();
 
-            return users.FirstOrDefault(x => x.UserName == username && x.Password == password); // kollar om det finns en användare i listan och om password stämmer
+            return users.FirstOrDefault(x => x.UserName == username && x.Password == password);
         }
     }
 }

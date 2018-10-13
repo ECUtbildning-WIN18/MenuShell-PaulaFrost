@@ -1,4 +1,5 @@
 ﻿using System;
+using MenuShell.View;
 
 namespace MenuShell
 {
@@ -6,6 +7,13 @@ namespace MenuShell
     {
         static void Main(string[] args)
         {
+            var loginView = new LoginView();
+
+            loginView.Display();
+
+
+
+
             Console.WriteLine("Wazzup my Nagas!");
         }
     }
