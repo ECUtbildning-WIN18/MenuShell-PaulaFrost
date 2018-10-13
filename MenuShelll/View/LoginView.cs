@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using MenuShell.Service;
 
 namespace MenuShell.View
 {
-    class LoginView : ConsoleView
+    public class LoginView : ConsoleView
     {
         public override string Display()
         {
@@ -25,11 +26,11 @@ namespace MenuShell.View
 
                 var authenticationService = new AuthenticationService();
 
-                var user = authenticationService.Authenticate(username, password);
+                var users = authenticationService.Authenticate(username, password);
 
                 if (keyInfo.Key == ConsoleKey.Y)
                 {
-                    if (username == user.UserName && password == user.Password)
+                    if (username == users.UserName && password == users.Password)
                     {
                         loginSucceded = true;
                     }

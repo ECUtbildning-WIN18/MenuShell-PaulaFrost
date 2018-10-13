@@ -12,16 +12,25 @@ namespace MenuShell
     {
         static void Main(string[] args)
         {
-            var loginView = new LoginView();
-            var loadUser = new UserLoader();
+            var systemAdministratorView = new SystemAdministratorView();
 
-            var users = new List<User>
+            var users = new Dictionary<string, User>
             {
-                new User(username: "admin", password: "secret", role: "Administrator")
+                {"admin", new User(username: "admin", password: "secret", role: "Administrator") }
             };
 
-            loginView.Display();
-            loadUser.LoadUsers();
+            var loginView = new LoginView(users);
+
+            var validUser = loginView.Display();
+
+            if (validUser.Role == "Administrator")
+            {
+                
+            }
+
+            
+            
+            
 
 
 

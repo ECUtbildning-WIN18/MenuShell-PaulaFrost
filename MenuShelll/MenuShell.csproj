@@ -59,7 +59,7 @@
     <Compile Include="View\CreateUserView.cs" />
     <Compile Include="View\LoginView.cs" />
     <Compile Include="View\ReceptionistMainMenueView.cs" />
-    <Compile Include="View\SystemAdministrator.cs" />
+    <Compile Include="View\SystemAdministratorView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -2,7 +2,7 @@
 
 namespace MenuShell.View
 {
-    class ConsoleView
+    public class ConsoleView
     {
         public virtual string Display()
         {

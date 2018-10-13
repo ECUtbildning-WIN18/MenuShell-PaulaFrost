@@ -1,7 +1,16 @@
-﻿namespace MenuShell.View
+﻿using System;
+
+namespace MenuShell.View
 {
     abstract class BaseView
     {
-        public abstract void BaseDisplay();
+        public string Title { get; }
+
+        BaseView(string title)
+        {
+            Title = title;
+
+            Console.Title = title;
+        }
     }
 }

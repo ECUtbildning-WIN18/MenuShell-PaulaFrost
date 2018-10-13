@@ -3,7 +3,7 @@ using System;
 
 namespace MenuShell.View
 {
-    class SystemAdministrator : ConsoleView
+    class SystemAdministratorView : ConsoleView
     {
         public override string Display()
         {
