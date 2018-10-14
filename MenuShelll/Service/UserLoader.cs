@@ -20,7 +20,7 @@ namespace MenuShell.Service
                 var password = element.Attribute("password").Value;
                 var role = element.Attribute("role").Value;
 
-                users.Add(new User(username, password, role));
+                users.Add(new User(username, password, Role.Administrator));
             }
 
             return users;

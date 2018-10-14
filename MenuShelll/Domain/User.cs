@@ -1,12 +1,12 @@
 ﻿namespace MenuShell.Domain
 {
-    class User
+    public class User
     {
         public string UserName { get; }
         public string Password { get; }
-        public string Role { get; }
+        public Role Role { get; }
         
-        public User(string username, string password, string role)
+        public User(string username, string password, Role role)
         {
             UserName = username;
             Password = password;

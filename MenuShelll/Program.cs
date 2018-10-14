@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Security.Authentication.ExtendedProtection;
-using System.Security.Claims;
 using MenuShell.Domain;
-using MenuShell.Service;
 using MenuShell.View;
 
 namespace MenuShell
@@ -12,28 +8,14 @@ namespace MenuShell
     {
         static void Main(string[] args)
         {
-            var systemAdministratorView = new SystemAdministratorView();
+            var loginView = new LoginView();
 
-            var users = new Dictionary<string, User>
+            var authUser = loginView.Display();
+
+            if (authUser.Role == Role.Administrator)
             {
-                {"admin", new User(username: "admin", password: "secret", role: "Administrator") }
-            };
-
-            var loginView = new LoginView(users);
-
-            var validUser = loginView.Display();
-
-            if (validUser.Role == "Administrator")
-            {
-                
+                Console.WriteLine("admin menu");
             }
-
-            
-            
-            
-
-
-
 
             Console.WriteLine("Wazzup my Nagas!");
         }

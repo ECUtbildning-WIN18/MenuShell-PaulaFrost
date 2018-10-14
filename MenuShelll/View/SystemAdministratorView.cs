@@ -7,25 +7,33 @@ namespace MenuShell.View
     {
         public override string Display()
         {
-            base.Display();
+            bool isRunning = true;
 
-            Console.WriteLine("(1) Administer users");
-            Console.WriteLine("(2) Exit");
-
-            var consoleKeyInfo = Console.ReadKey(true);
-
-            switch (consoleKeyInfo.Key)
+            do
             {
-                case ConsoleKey.D1:
-                    return "1";
-                case ConsoleKey.D2:
-                    return "2";
-                default:
-                    return "";
-            }
-            return "";
+                base.Display();
 
-            //switch 
+                Console.WriteLine("(1) Administer users");
+                Console.WriteLine("(2) Exit");
+
+                var consoleKeyInfo = Console.ReadKey(true);
+
+                switch (consoleKeyInfo.Key)
+                {
+                    case ConsoleKey.D1:
+                        var createUser = new CreateUserView();
+                        createUser.Display();
+                        break;
+                    case ConsoleKey.D2:
+                        isRunning = false;
+                        break;
+                    default:
+                        break;
+                }
+
+            } while (isRunning);
+            
+            return "";
         }
     }
 }

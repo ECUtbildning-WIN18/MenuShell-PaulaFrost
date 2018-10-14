@@ -1,18 +1,30 @@
-﻿using System;
+﻿using MenuShell.Domain;
+using System;
 using System.Collections.Generic;
-using MenuShell.Service;
+using System.Threading;
 
 namespace MenuShell.View
 {
-    public class LoginView : ConsoleView
+    public class LoginView //: BaseView
     {
-        public override string Display()
+        //public LoginView() : base("Login")
+        //{
+
+        //}
+
+        public User Display()
         {
-            bool loginSucceded = false;
+            
+             var users = new Dictionary<string, User>
+             {
+                  {"admin", new User(username: "admin", password: "secret", role: Role.Administrator)}
+             };
+
+            User authUser = null;
 
             do
             {
-                base.Display();
+                Console.Clear();
 
                 Console.WriteLine("Please log in\n");
                 Console.WriteLine("Username:");
@@ -24,35 +36,27 @@ namespace MenuShell.View
                 Console.WriteLine("\nIs this correct? (Y)es (N)o");
                 var keyInfo = Console.ReadKey(true);
 
-                var authenticationService = new AuthenticationService();
-
-                var users = authenticationService.Authenticate(username, password);
-
                 if (keyInfo.Key == ConsoleKey.Y)
                 {
-                    if (username == users.UserName && password == users.Password)
+                    if (users.ContainsKey(username) && users[username].Password == password)
                     {
-                        loginSucceded = true;
+                        authUser = users[username];
                     }
                     else
                     {
-                        Console.WriteLine("Invalid username and/or password");
+                        Console.Clear();
+                        Console.WriteLine("Login failed, please try again!");
+                        Thread.Sleep(2000);
                     }
                 }
-                else if(keyInfo.Key == ConsoleKey.N)
+                else if (keyInfo.Key == ConsoleKey.N)
                 {
-                    Environment.Exit(0);
-                }
-                else
-                {
-                    Console.WriteLine("Access denied!");
+
                 }
 
-            } while (!loginSucceded);
-            Console.WriteLine("\nLogin Succeded!");
-            Console.ReadKey();
-            return "";
-        }
-        
+            } while (authUser == null);
+
+            return authUser;
+        } 
     }
 }
