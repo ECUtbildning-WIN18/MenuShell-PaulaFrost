@@ -2,7 +2,7 @@
 
 namespace MenuShell.Service
 {
-    interface IAuthenticationService
+    public interface IAuthenticationService
     {
         User Authenticate(string username, string password);
     }

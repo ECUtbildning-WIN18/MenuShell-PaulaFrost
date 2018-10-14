@@ -5,6 +5,6 @@ namespace MenuShell.Service
 {
     interface IUserLoader
     {
-        List<User> LoadUsers();
+        IDictionary<string, User> LoadUsers();
     }
 }

@@ -1,26 +1,24 @@
 ﻿using MenuShell.Domain;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
+using MenuShell.Service;
 
 namespace MenuShell.View
 {
     public class LoginView //: BaseView
     {
-        //public LoginView() : base("Login")
-        //{
+        private readonly IAuthenticationService _authenticationService;
 
-        //}
+        public LoginView(IAuthenticationService authenticationService) // ???
+        {
+            _authenticationService = authenticationService;
+        }
 
         public User Display()
         {
-            
-             var users = new Dictionary<string, User>
-             {
-                  {"admin", new User(username: "admin", password: "secret", role: Role.Administrator)}
-             };
-
-            User authUser = null;
+            User validUser = null;
 
             do
             {
@@ -30,33 +28,41 @@ namespace MenuShell.View
                 Console.WriteLine("Username:");
                 Console.WriteLine("Password:");
 
+                WriteAt(" ", 9, 2);
                 string username = Console.ReadLine();
+                WriteAt(" ", 9, 3);
                 string password = Console.ReadLine();
 
                 Console.WriteLine("\nIs this correct? (Y)es (N)o");
-                var keyInfo = Console.ReadKey(true);
+                var consoleKeyInfo = Console.ReadKey(true);
 
-                if (keyInfo.Key == ConsoleKey.Y)
+                if (consoleKeyInfo.Key == ConsoleKey.Y)
                 {
-                    if (users.ContainsKey(username) && users[username].Password == password)
-                    {
-                        authUser = users[username];
-                    }
-                    else
+                    validUser = _authenticationService.Authenticate(username, password);
+
+                    if(validUser == null)
                     {
                         Console.Clear();
                         Console.WriteLine("Login failed, please try again!");
                         Thread.Sleep(2000);
                     }
                 }
-                else if (keyInfo.Key == ConsoleKey.N)
+                else if (consoleKeyInfo.Key == ConsoleKey.N)
                 {
 
                 }
 
-            } while (authUser == null);
+            } while (validUser == null);
 
-            return authUser;
-        } 
+            return validUser;
+        }
+
+        public static int xCoord, yCoord, y;
+
+        static void WriteAt(string s, int x, int y)
+        {
+            Console.SetCursorPosition(xCoord + x, yCoord + y);
+            Console.Write(s);
+        }
     }
 }

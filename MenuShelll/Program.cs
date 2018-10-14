@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using MenuShell.Domain;
+using MenuShell.Service;
 using MenuShell.View;
 
 namespace MenuShell
@@ -8,13 +10,18 @@ namespace MenuShell
     {
         static void Main(string[] args)
         {
-            var loginView = new LoginView();
+            var userLoader = new XMLUserLoader();
 
-            var authUser = loginView.Display();
+            var authenticationService = new AuthenticationService(userLoader);
 
-            if (authUser.Role == Role.Administrator)
+            var loginView = new LoginView(authenticationService);
+
+            var validUser = loginView.Display();
+
+            if (validUser.Role == Role.Administrator)
             {
-                Console.WriteLine("admin menu");
+                var adminView = new SystemAdministratorView(); //??
+                adminView.Display();
             }
 
             Console.WriteLine("Wazzup my Nagas!");

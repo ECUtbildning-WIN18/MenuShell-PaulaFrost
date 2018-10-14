@@ -50,14 +50,14 @@
     <Compile Include="Service\AuthenticationService.cs" />
     <Compile Include="Service\IAuthenticationService.cs" />
     <Compile Include="Service\IUserLoader.cs" />
-    <Compile Include="Service\UserLoader.cs" />
+    <Compile Include="Service\XmlUserLoader.cs" />
     <Compile Include="View\AddUserView.cs" />
-    <Compile Include="View\AdministerUsersView.cs" />
+    <Compile Include="View\ManageUsersView.cs" />
     <Compile Include="View\BaseView.cs" />
     <Compile Include="View\ConsoleView.cs" />
-    <Compile Include="View\CreateUserView.cs" />
+    <Compile Include="View\DeleteUserView.cs" />
     <Compile Include="View\LoginView.cs" />
-    <Compile Include="View\ReceptionistMainMenueView.cs" />
+    <Compile Include="View\ReceptionistMainMenuView.cs" />
     <Compile Include="View\SystemAdministratorView.cs" />
   </ItemGroup>
   <ItemGroup>

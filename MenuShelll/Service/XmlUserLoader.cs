@@ -4,9 +4,9 @@ using System.Xml.Linq;
 
 namespace MenuShell.Service
 {
-    class UserLoader : IUserLoader 
+    class XMLUserLoader : IUserLoader 
     {
-        public List<User> LoadUsers()
+        public IDictionary<string, User> LoadUsers()
         {
             var users = new List<User>();
 
@@ -23,7 +23,7 @@ namespace MenuShell.Service
                 users.Add(new User(username, password, Role.Administrator));
             }
 
-            return users;
+            return users; // ????
         }
     }
 }

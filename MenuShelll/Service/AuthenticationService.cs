@@ -1,24 +1,30 @@
-﻿using MenuShell.Domain;
+﻿using System.Collections.Generic;
+using MenuShell.Domain;
 using System.Linq;
 
 namespace MenuShell.Service
 {
     class AuthenticationService : IAuthenticationService
     {
-        public readonly IUserLoader _userLoader;
+        private readonly IUserLoader _userLoader;
 
-        public AuthenticationService()
+        public AuthenticationService(IUserLoader userLoader)
         {
-            _userLoader = new UserLoader();
+            _userLoader = userLoader;
         }
 
         public User Authenticate(string username, string password)
         {
-            var userLoader = new UserLoader();
+            User user = null;
 
-            var users = userLoader.LoadUsers();
+            var users =_userLoader.LoadUsers();
 
-            return users.FirstOrDefault(x => x.UserName == username && x.Password == password);
+            if (users.ContainsKey(username) && users[username].Password == password)
+            {
+                user = users[username];
+            }
+
+            return user;
         }
     }
 }

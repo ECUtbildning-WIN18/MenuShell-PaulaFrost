@@ -6,7 +6,7 @@ namespace MenuShell.View
     {
         public string Title { get; set; }
 
-        BaseView(string title)
+        public BaseView(string title)
         {
             Title = title;
 
