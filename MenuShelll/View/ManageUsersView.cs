@@ -20,13 +20,13 @@ namespace MenuShell.View
             do
             {
                 base.Display();
-
+                Console.WriteLine("# Manage user\n");
                 Console.WriteLine("1. Add user");
                 Console.WriteLine("2. Delete user");
 
                 Console.WriteLine("\n>");
 
-                WriteAt("", 1, 3);
+                WriteAt("", 1, 5);
                 var consoleKeyInfo = Console.ReadKey(true);
 
                 switch (consoleKeyInfo.Key)
@@ -34,13 +34,6 @@ namespace MenuShell.View
                     case ConsoleKey.D1:
                         var addUser = new AddUserView(_users);
                         addUser.Display();
-
-                        foreach (var user in _users)
-                        {
-                            Console.WriteLine(user.Value.UserName);
-                        }
-
-                        Console.ReadKey();
                         break;
                     case ConsoleKey.D2:
                         var deleteUser = new DeleteUserView(_users);

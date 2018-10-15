@@ -8,7 +8,7 @@ namespace MenuShell.Service
     {
         public IDictionary<string, User> LoadUsers()
         {
-            var users = new List<User>();
+            var users = new Dictionary<string, User>();
 
             var doc = XDocument.Load("Users.xml");
 
@@ -20,10 +20,10 @@ namespace MenuShell.Service
                 var password = element.Attribute("password").Value;
                 var role = element.Attribute("role").Value;
 
-                users.Add(new User(username, password, Role.Administrator));
+                users.Add(username, new User(username, password, Role.Administrator));
             }
 
-            return users; // ????
+            return users;
         }
     }
 }

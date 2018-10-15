@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using MenuShell.Domain;
+﻿using MenuShell.Domain;
 using MenuShell.Service;
 using MenuShell.View;
 
@@ -18,13 +16,20 @@ namespace MenuShell
 
             var validUser = loginView.Display();
 
+            var users = userLoader.LoadUsers();
+
             if (validUser.Role == Role.Administrator)
             {
-                var adminView = new SystemAdministratorView(); //??
+                var adminView = new SystemAdministratorView(users);
+
                 adminView.Display();
             }
+            else if (validUser.Role == Role.Receptionist)
+            {
+                var receptionistView = new ReceptionistMainMenuView(users);
 
-            Console.WriteLine("Wazzup my Nagas!");
+                receptionistView.Display();
+            }
         }
     }
 }

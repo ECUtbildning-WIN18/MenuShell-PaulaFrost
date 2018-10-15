@@ -52,6 +52,7 @@
     <Compile Include="Service\IUserLoader.cs" />
     <Compile Include="Service\XmlUserLoader.cs" />
     <Compile Include="View\AddUserView.cs" />
+    <Compile Include="View\ListUsersView.cs" />
     <Compile Include="View\ManageUsersView.cs" />
     <Compile Include="View\BaseView.cs" />
     <Compile Include="View\ConsoleView.cs" />

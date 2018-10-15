@@ -4,11 +4,11 @@ using MenuShell.Domain;
 
 namespace MenuShell.View
 {
-    class DeleteUserView : ConsoleView
+    class ListUsersView : ConsoleView
     {
         private readonly IDictionary<string, User> _users;
 
-        public DeleteUserView(IDictionary<string, User> users)
+        public ListUsersView(IDictionary<string, User> users)
         {
             _users = users;
         }
@@ -27,29 +27,17 @@ namespace MenuShell.View
                     Console.WriteLine(user.Value.UserName);
                 }
 
-                Console.WriteLine("\nChoose one user");
-                var choice = Console.ReadLine();
+                Console.WriteLine("\nPress Escape to get back..");
+                var consoleKeyInfo = Console.ReadKey();
 
-                if (_users.ContainsKey(choice))
-                {
-                    _users.Remove(choice);
-                }
-                else
+                if (consoleKeyInfo.Key == ConsoleKey.Escape)
                 {
                     isRunning = false;
                 }
 
             } while (isRunning);
 
-            return " ";
-        }
-
-        public static int xCoord, yCoord, y;
-
-        static void WriteAt(string s, int x, int y)
-        {
-            Console.SetCursorPosition(xCoord + x, yCoord + y);
-            Console.Write(s);
+            return "";
         }
     }
 }

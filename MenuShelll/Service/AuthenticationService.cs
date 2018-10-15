@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using MenuShell.Domain;
-using System.Linq;
+﻿using MenuShell.Domain;
 
 namespace MenuShell.Service
 {

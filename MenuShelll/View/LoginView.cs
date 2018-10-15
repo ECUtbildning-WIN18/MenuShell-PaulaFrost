@@ -1,17 +1,15 @@
 ﻿using MenuShell.Domain;
 using System;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using MenuShell.Service;
 
 namespace MenuShell.View
 {
-    public class LoginView //: BaseView
+    public class LoginView
     {
         private readonly IAuthenticationService _authenticationService;
 
-        public LoginView(IAuthenticationService authenticationService) // ???
+        public LoginView(IAuthenticationService authenticationService)
         {
             _authenticationService = authenticationService;
         }

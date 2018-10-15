@@ -8,9 +8,9 @@ namespace MenuShell.View
     {
         private readonly IDictionary< string, User> _users;
 
-        public SystemAdministratorView(IDictionary<string, User> _users)
+        public SystemAdministratorView(IDictionary<string, User> users)
         {
-            _users = _users;
+            _users = users;
         }
 
         public override string Display()
@@ -20,13 +20,13 @@ namespace MenuShell.View
             do
             {
                 base.Display();
-
+                Console.WriteLine("# Admin menu\n");
                 Console.WriteLine("(1) Manage users");
                 Console.WriteLine("(2) Exit");
 
                 Console.WriteLine("\n>");
 
-                WriteAt(" ", 1, 3);
+                WriteAt(" ", 1, 5);
                 var consoleKeyInfo = Console.ReadKey(true);
 
                 switch (consoleKeyInfo.Key)

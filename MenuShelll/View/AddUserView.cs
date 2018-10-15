@@ -1,21 +1,16 @@
 ﻿using MenuShell.Domain;
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using MenuShell.Service;
 
 namespace MenuShell.View
 {
     class AddUserView : ConsoleView
     {
-        private readonly IUserLoader _userLoader;
         private readonly IDictionary<string, User> _users;
 
-        public AddUserView(IDictionary<string, User> users, IUserLoader userLoader)
+        public AddUserView(IDictionary<string, User> users)
         {
             _users = users;
-            _userLoader = userLoader;
         }
 
         public override string Display()
@@ -42,13 +37,11 @@ namespace MenuShell.View
 
                 var consoleKeyInfo = Console.ReadKey(true);
 
-                var users = _userLoader.LoadUsers();
-
                 var user = new User(username, password, (Role) Enum.Parse(typeof(Role), role));
 
-                if (!users.ContainsKey(user.UserName))
+                if (!_users.ContainsKey(user.UserName))
                 {
-                    users.Add(user.UserName, user);
+                    _users.Add(user.UserName, user);
 
                     isRunning = false;
                 }
