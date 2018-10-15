@@ -1,4 +1,5 @@
-﻿using MenuShell.Domain;
+﻿using System;
+using MenuShell.Domain;
 using MenuShell.Service;
 using MenuShell.View;
 
@@ -29,6 +30,8 @@ namespace MenuShell
                 var receptionistView = new ReceptionistMainMenuView(users);
 
                 receptionistView.Display();
+
+                Console.WriteLine("Wazzup my Nagas!");
             }
         }
     }
