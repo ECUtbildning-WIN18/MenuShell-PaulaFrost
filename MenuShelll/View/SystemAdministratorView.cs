@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using MenuShell.Domain;
+using MenuShell.Service;
 
 namespace MenuShell.View
 {
     class SystemAdministratorView : ConsoleView
     {
         private readonly IDictionary< string, User> _users;
+        private readonly IAuthenticationService authenticationService;
 
         public SystemAdministratorView(IDictionary<string, User> users)
         {
@@ -36,6 +38,8 @@ namespace MenuShell.View
                         manageUser.Display();
                         break;
                     case ConsoleKey.D2:
+                        var backToLogin = new LoginView(authenticationService); // ???
+                        backToLogin.Display();
                         isRunning = false;
                         break;
                     default:

@@ -59,6 +59,7 @@
     <Compile Include="View\DeleteUserView.cs" />
     <Compile Include="View\LoginView.cs" />
     <Compile Include="View\ReceptionistMainMenuView.cs" />
+    <Compile Include="View\SearchUserView.cs" />
     <Compile Include="View\SystemAdministratorView.cs" />
   </ItemGroup>
   <ItemGroup>

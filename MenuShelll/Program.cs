@@ -30,9 +30,10 @@ namespace MenuShell
                 var receptionistView = new ReceptionistMainMenuView(users);
 
                 receptionistView.Display();
-
-                Console.WriteLine("Wazzup my Nagas!");
+ 
             }
+
+            Console.WriteLine("Wazzup my Nagas!");
         }
     }
 }
