@@ -34,16 +34,45 @@ namespace MenuShell.View
                     if (user.Value.UserName == choice)
                     {
                         Console.WriteLine(user.Key);
+
+                        if (!_users.ContainsKey(choice))
+                        {
+                            Console.WriteLine($"No users found matching the search term {choice}");
+                            Thread.Sleep(2000);
+                            isRunning = false;
+                        }
                     }
-                    else if(!_users.ContainsKey(choice))
+
+                    Console.Write("\nDelete>");
+
+                    var secChoice = Console.ReadLine();
+                    if (_users.ContainsKey(secChoice))
                     {
-                        Console.WriteLine($"No users found matching the search term {choice}");
-                        Thread.Sleep(2000);
+                        Console.WriteLine($"Delete user {secChoice}? (Y)es (N)o");
+                        var consoleKeyInfo = Console.ReadKey();
+
+                        switch (consoleKeyInfo.Key)
+                        {
+                            case ConsoleKey.Y:
+                                _users.Remove(secChoice);
+                                Console.WriteLine($"User {secChoice} successfully deleted.");
+                                Thread.Sleep(2000);
+                                break;
+                            case ConsoleKey.N:
+
+                                break;
+                        } 
+                    }
+                    else
+                    {
                         isRunning = false;
                     }
-                }
+                   
+                }                                       //EJ KLAAAAAR!!!!
 
-                Console.WriteLine($"Delete user {choice}");
+
+                Console.WriteLine("baaajs");
+                Console.ReadKey();
 
             } while (isRunning);
 
