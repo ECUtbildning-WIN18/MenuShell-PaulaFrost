@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using MenuShell.Domain;
-using MenuShell.View;
 
 namespace MenuShell.View
 {
@@ -19,6 +18,7 @@ namespace MenuShell.View
         public override string Display()
         {
             var isRunning = true;
+            var count = 0;
 
             do
             {
@@ -29,54 +29,71 @@ namespace MenuShell.View
 
                 var choice = Console.ReadLine();
 
-                foreach (var user in _users)
-                {    
-                    if (user.Value.UserName == choice)
+                foreach(var user in _users)
+                {
+                    if (user.Value.UserName.Contains(choice))
                     {
-                        Console.WriteLine(user.Key);
+                        Console.WriteLine(user.Value.UserName);
+                        //var searchResult = _users.Where(x => x.Value.UserName.Contains(choice));
+                        count += 1;
+                    }
+                }
 
-                        if (!_users.ContainsKey(choice))
+                if (count < 1)
+                {
+                    Console.WriteLine($"No users found matching the search term {choice}");
+                    Thread.Sleep(2000);
+                    isRunning = false;
+                }
+                else if (count >= 1)
+                {
+                    Console.Write("\n(D)elete>");
+                    var consoleKeyInfo = Console.ReadKey(true);
+
+                    if (consoleKeyInfo.Key == ConsoleKey.D)
+                    {
+                        ClearLine();
+                        Console.Write("Delete>");
+                        var secChoice = Console.ReadLine();
+                        if (_users.ContainsKey(secChoice))
                         {
-                            Console.WriteLine($"No users found matching the search term {choice}");
-                            Thread.Sleep(2000);
-                            isRunning = false;
+                            Console.WriteLine($"Delete user {secChoice}? (Y)es (N)o");
+                            var consoleKeyInfo2 = Console.ReadKey(true);
+
+                            switch (consoleKeyInfo2.Key)
+                            {
+                                case ConsoleKey.Y:
+                                    _users.Remove(secChoice);
+                                    Console.WriteLine($"User {secChoice} successfully deleted.");
+                                    Thread.Sleep(2000);
+                                    isRunning = false;
+                                    break;
+                                case ConsoleKey.N:
+                                    isRunning = false;
+                                    break;
+                            }
                         }
                     }
-
-                    Console.Write("\nDelete>");
-
-                    var secChoice = Console.ReadLine();
-                    if (_users.ContainsKey(secChoice))
-                    {
-                        Console.WriteLine($"Delete user {secChoice}? (Y)es (N)o");
-                        var consoleKeyInfo = Console.ReadKey();
-
-                        switch (consoleKeyInfo.Key)
-                        {
-                            case ConsoleKey.Y:
-                                _users.Remove(secChoice);
-                                Console.WriteLine($"User {secChoice} successfully deleted.");
-                                Thread.Sleep(2000);
-                                break;
-                            case ConsoleKey.N:
-
-                                break;
-                        } 
-                    }
-                    else
-                    {
-                        isRunning = false;
-                    }
-                   
-                }                                       //EJ KLAAAAAR!!!!
-
-
-                Console.WriteLine("baaajs");
-                Console.ReadKey();
+                }
 
             } while (isRunning);
 
             return "";
+        }
+
+        public static int xCoord, yCoord, y;
+
+        static void WriteAt(string s, int x, int y)
+        {
+            Console.SetCursorPosition(xCoord + x, yCoord + y);
+            Console.Write(s);
+        }
+
+        static void ClearLine()
+        {
+            Console.SetCursorPosition(0, Console.CursorTop);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, Console.CursorTop - 1);
         }
     }
 }

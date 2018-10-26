@@ -1,4 +1,5 @@
-﻿using MenuShell.Domain;
+﻿using System;
+using MenuShell.Domain;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
@@ -20,7 +21,9 @@ namespace MenuShell.Service
                 var password = element.Attribute("password").Value;
                 var role = element.Attribute("role").Value;
 
-                users.Add(username, new User(username, password, Role.Administrator));
+                Enum.TryParse(role, out Role roleResult);
+
+                users.Add(username, new User(username, password, roleResult));
             }
 
             return users;
