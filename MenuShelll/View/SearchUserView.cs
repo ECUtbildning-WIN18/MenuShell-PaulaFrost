@@ -8,14 +8,21 @@ namespace MenuShell.View
 {
     class SearchUserView : ConsoleView
     {
-        private readonly IDictionary<string, User> _users;
+        //private readonly IDictionary<string, User> _users;
 
-        public SearchUserView(IDictionary<string, User> users)
+        //public SearchUserView(IDictionary<string, User> users)
+        //{
+        //    _users = users;
+        //}
+
+        private readonly IList<User> _users;
+
+        public SearchUserView(IList<User> users)
         {
             _users = users;
         }
 
-        public override string Display()
+        public override void Display()
         {
             var isRunning = true;
             var count = 0;
@@ -31,12 +38,12 @@ namespace MenuShell.View
 
                 foreach(var user in _users)
                 {
-                    if (user.Value.UserName.Contains(choice))
-                    {
-                        Console.WriteLine(user.Value.UserName);
-                        //var searchResult = _users.Where(x => x.Value.UserName.Contains(choice));
-                        count += 1;
-                    }
+                    //if (user.Value.UserName.Contains(choice))
+                    //{
+                    //    Console.WriteLine(user.Value.UserName);
+                    //    //var searchResult = _users.Where(x => x.Value.UserName.Contains(choice));
+                    //    count += 1;
+                    //}
                 }
 
                 if (count < 1)
@@ -52,33 +59,31 @@ namespace MenuShell.View
 
                     if (consoleKeyInfo.Key == ConsoleKey.D)
                     {
-                        ClearLine();
-                        Console.Write("Delete>");
-                        var secChoice = Console.ReadLine();
-                        if (_users.ContainsKey(secChoice))
-                        {
-                            Console.WriteLine($"Delete user {secChoice}? (Y)es (N)o");
-                            var consoleKeyInfo2 = Console.ReadKey(true);
+                        //ClearLine();
+                        //Console.Write("Delete>");
+                        //var secChoice = Console.ReadLine();
+                        //if (_users.ContainsKey(secChoice))
+                        //{
+                        //    Console.WriteLine($"Delete user {secChoice}? (Y)es (N)o");
+                        //    var consoleKeyInfo2 = Console.ReadKey(true);
 
-                            switch (consoleKeyInfo2.Key)
-                            {
-                                case ConsoleKey.Y:
-                                    _users.Remove(secChoice);
-                                    Console.WriteLine($"User {secChoice} successfully deleted.");
-                                    Thread.Sleep(2000);
-                                    isRunning = false;
-                                    break;
-                                case ConsoleKey.N:
-                                    isRunning = false;
-                                    break;
-                            }
-                        }
+                        //    switch (consoleKeyInfo2.Key)
+                        //    {
+                        //        case ConsoleKey.Y:
+                        //            _users.Remove(secChoice);
+                        //            Console.WriteLine($"User {secChoice} successfully deleted.");
+                        //            Thread.Sleep(2000);
+                        //            isRunning = false;
+                        //            break;
+                        //        case ConsoleKey.N:
+                        //            isRunning = false;
+                        //            break;
+                        //    }
+                        //}
                     }
                 }
 
             } while (isRunning);
-
-            return "";
         }
 
         public static int xCoord, yCoord, y;

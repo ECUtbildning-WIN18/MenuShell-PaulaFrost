@@ -9,11 +9,18 @@ namespace MenuShell.View
 {
     public class LoginView
     {
-        private readonly IAuthenticationService _authenticationService;
+        //private readonly IAuthenticationService _authenticationService;
 
-        public LoginView(IAuthenticationService authenticationService)
+        //public LoginView(IAuthenticationService authenticationService)
+        //{
+        //    _authenticationService = authenticationService;
+        //}
+
+        private readonly SQLLogin _sqlLogin;
+
+        public LoginView(SQLLogin sqlLogin)
         {
-            _authenticationService = authenticationService;
+            _sqlLogin = sqlLogin;
         }
 
         public User Display()
@@ -38,7 +45,7 @@ namespace MenuShell.View
 
                 if (consoleKeyInfo.Key == ConsoleKey.Y)
                 {
-                    validUser = _authenticationService.Authenticate(username, password);
+                    validUser = _sqlLogin.AuthenticateUser(username, password);
 
                     if(validUser == null)
                     {

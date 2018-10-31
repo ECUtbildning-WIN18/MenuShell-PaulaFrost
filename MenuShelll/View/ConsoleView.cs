@@ -4,11 +4,9 @@ namespace MenuShell.View
 {
     public class ConsoleView
     {
-        public virtual string Display()
+        public virtual void Display()
         {
             Console.Clear();
-
-            return "";
         }
     }
 }

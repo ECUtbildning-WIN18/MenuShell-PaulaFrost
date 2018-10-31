@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using MenuShell.Domain;
 using MenuShell.Service;
 using MenuShell.View;
@@ -9,15 +10,24 @@ namespace MenuShell
     {
         static void Main(string[] args)
         {
-            var userLoader = new XMLUserLoader();
 
-            var authenticationService = new AuthenticationService(userLoader);
+            //var displayUsers = new SQLDisplayUser();
 
-            var loginView = new LoginView(authenticationService);
+            //displayUsers.DisplayUsers();
+
+            //var userLoader = new XMLUserLoader();
+            var userLoader = new SQLLoader();
+
+            //var authenticationService = new AuthenticationService(userLoader);
+
+            var autheticateUsers = new SQLLogin();
+
+            var loginView = new LoginView(autheticateUsers);
 
             var validUser = loginView.Display();
 
-            var users = userLoader.LoadUsers();
+            //var users = userLoader.LoadUsers();
+            var users = userLoader.UserLoaders();
 
             if (validUser.Role == Role.Administrator)
             {
@@ -30,10 +40,11 @@ namespace MenuShell
                 var receptionistView = new ReceptionistMainMenuView(users);
 
                 receptionistView.Display();
- 
+
             }
 
             Console.WriteLine("Wazzup my Nagas!");
-        }
+            Console.ReadKey();
+        } 
     }
 }

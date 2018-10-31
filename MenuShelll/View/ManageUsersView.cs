@@ -7,14 +7,21 @@ namespace MenuShell.View
 {
     class ManageUsersView : ConsoleView
     {
-        private readonly IDictionary<string, User> _users;
+        //private readonly IDictionary<string, User> _users;
 
-        public ManageUsersView(IDictionary<string, User> users)
+        //public ManageUsersView(IDictionary<string, User> users)
+        //{
+        //    _users = users;
+        //}
+
+        private readonly IList<User> _users;
+
+        public ManageUsersView(IList<User> users)
         {
             _users = users;
         }
 
-        public override string Display()
+        public override void Display()
         {
             bool isRunning = true;
 
@@ -48,8 +55,6 @@ namespace MenuShell.View
                 }
 
             } while (isRunning);
-
-            return "";
         }
 
         public static int xCoord, yCoord, y;

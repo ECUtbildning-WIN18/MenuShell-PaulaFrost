@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -48,8 +49,13 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\AuthenticationService.cs" />
+    <Compile Include="Service\DatabaseHelper.cs" />
     <Compile Include="Service\IAuthenticationService.cs" />
     <Compile Include="Service\IUserLoader.cs" />
+    <Compile Include="Service\SQLAddUser.cs" />
+    <Compile Include="Service\SQLDisplayUser.cs" />
+    <Compile Include="Service\SQLLoader.cs" />
+    <Compile Include="Service\SQLLogin.cs" />
     <Compile Include="Service\XmlUserLoader.cs" />
     <Compile Include="View\AddUserView.cs" />
     <Compile Include="View\ListUsersView.cs" />

@@ -5,7 +5,7 @@ using System.Xml.Linq;
 
 namespace MenuShell.Service
 {
-    class XMLUserLoader : IUserLoader 
+    class XMLUserLoader //: IUserLoader 
     {
         public IDictionary<string, User> LoadUsers()
         {

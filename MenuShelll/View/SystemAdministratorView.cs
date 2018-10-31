@@ -7,15 +7,22 @@ namespace MenuShell.View
 {
     class SystemAdministratorView : ConsoleView
     {
-        private readonly IDictionary< string, User> _users;
-        private readonly IAuthenticationService authenticationService;
+        //private readonly IDictionary<string, User> _users;
+        //private readonly IAuthenticationService authenticationService;
 
-        public SystemAdministratorView(IDictionary<string, User> users)
+        //public SystemAdministratorView(IDictionary<string, User> users)
+        //{
+        //    _users = users;
+        //}
+
+        private readonly IList<User> _users;
+
+        public SystemAdministratorView(IList<User> users)
         {
             _users = users;
         }
 
-        public override string Display()
+        public override void Display()
         {
             bool isRunning = true;
 
@@ -38,7 +45,8 @@ namespace MenuShell.View
                         manageUser.Display();
                         break;
                     case ConsoleKey.D2:
-                        var backToLogin = new LoginView(authenticationService); // ???
+                        var authenticateUsers = new SQLLogin();
+                        var backToLogin = new LoginView(authenticateUsers);
                         backToLogin.Display();
                         isRunning = false;
                         break;
@@ -47,8 +55,6 @@ namespace MenuShell.View
                 }
 
             } while (isRunning);
-            
-            return "";
         }
 
         public static int xCoord, yCoord, y;

@@ -6,14 +6,21 @@ namespace MenuShell.View
 {
     class ReceptionistMainMenuView : ConsoleView
     {
-        private IDictionary<string, User> _users;
+        //private IDictionary<string, User> _users;
 
-        public ReceptionistMainMenuView(IDictionary<string, User> users)
+        //public ReceptionistMainMenuView(IDictionary<string, User> users)
+        //{
+        //    _users = users;
+        //}
+
+        private readonly IList<User> _users;
+
+        public ReceptionistMainMenuView(IList<User> users)
         {
             _users = users;
         }
 
-        public override string Display()
+        public override void Display()
         {
             bool isRunning = true;
 
@@ -43,8 +50,6 @@ namespace MenuShell.View
                 }
 
             } while (isRunning);
-
-            return "";
         }
     }
 }
