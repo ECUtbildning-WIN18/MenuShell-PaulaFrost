@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 using MenuShell.Domain;
 using MenuShell.Service;
-using MenuShelll.Service;
+using MenuShell.Service;
 
 namespace MenuShell.View
 {
@@ -38,7 +38,11 @@ namespace MenuShell.View
 
                 var choice = Console.ReadLine();
 
-                var sqlSearch = new SQLSearch(choice);
+                var sqlSearch = new SQLSearch();
+
+                sqlSearch.SearchUser(choice);
+
+                
 
                 //foreach(var user in _users)
                 //{

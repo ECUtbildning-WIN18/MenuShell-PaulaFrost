@@ -6,25 +6,27 @@ namespace MenuShell.Service
 {
     class SQLAddUser
     {
-        public object AddUser(User user)
+        public void AddUser(User user)
         {
-            string sqlQuery = String.Format(
-                "INSERT into [User](UserName, Password, Role) VALUES('{0}', '{1}', '{2}');" +
-                "Select Identity", user.UserName, user.Password, user.Role);
+            using (var connection = new SqlConnection(DatabaseHelper.connectionString))
+            {
+                connection.Open();
 
-            SqlConnection connection = new SqlConnection(DatabaseHelper.connectionString);
+                var sqlQuery = String.Format(
+                    "INSERT into [User](UserName, Password, Role) VALUES('{0}', '{1}', '{2}');" +
+                    "Select @@Identity", user.UserName, user.Password, user.Role);
 
-            connection.Open();
+                var command = new SqlCommand(sqlQuery, connection);
 
-            SqlCommand command = new SqlCommand(sqlQuery, connection);
+                command.ExecuteNonQuery(); //Här small det
 
-            var newUser = command.ExecuteScalar();
-
-            command.Dispose();
-            connection.Close();
-            connection.Dispose();
-
-            return newUser;
+                command.Dispose();
+                connection.Close();
+                connection.Dispose();
+            }
         }
     }
 }
+
+
+
