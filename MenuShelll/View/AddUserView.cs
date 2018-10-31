@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using MenuShell.Service;
 using System.Linq;
+using System.Xml.Schema;
 
 namespace MenuShell.View
 {
@@ -50,10 +51,11 @@ namespace MenuShell.View
 
                 if (consoleKeyInfo.Key == ConsoleKey.Y)
                 {
+                    var sqlAddUser = new SQLAddUser();
+                    sqlAddUser.AddUser(user);
+
                     //var addUser = new AddUserView(user);
-
-                    //    isRunning = false;
-
+                    isRunning = false;
                 }
                 else if (consoleKeyInfo.Key == ConsoleKey.N)
                 {

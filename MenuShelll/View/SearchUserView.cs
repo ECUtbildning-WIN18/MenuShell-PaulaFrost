@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using MenuShell.Domain;
+using MenuShell.Service;
+using MenuShelll.Service;
 
 namespace MenuShell.View
 {
@@ -36,15 +38,17 @@ namespace MenuShell.View
 
                 var choice = Console.ReadLine();
 
-                foreach(var user in _users)
-                {
-                    //if (user.Value.UserName.Contains(choice))
-                    //{
-                    //    Console.WriteLine(user.Value.UserName);
-                    //    //var searchResult = _users.Where(x => x.Value.UserName.Contains(choice));
-                    //    count += 1;
-                    //}
-                }
+                var sqlSearch = new SQLSearch(choice);
+
+                //foreach(var user in _users)
+                //{
+                //    if (user.Value.UserName.Contains(choice))
+                //    {
+                //        Console.WriteLine(user.Value.UserName);
+                //        //var searchResult = _users.Where(x => x.Value.UserName.Contains(choice));
+                //        count += 1;
+                //    }
+                //}
 
                 if (count < 1)
                 {
