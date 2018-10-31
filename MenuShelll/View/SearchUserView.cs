@@ -42,8 +42,6 @@ namespace MenuShell.View
 
                 sqlSearch.SearchUser(choice);
 
-                
-
                 //foreach(var user in _users)
                 //{
                 //    if (user.Value.UserName.Contains(choice))
@@ -54,19 +52,19 @@ namespace MenuShell.View
                 //    }
                 //}
 
-                if (count < 1)
-                {
-                    Console.WriteLine($"No users found matching the search term {choice}");
-                    Thread.Sleep(2000);
-                    isRunning = false;
-                }
-                else if (count >= 1)
-                {
-                    Console.Write("\n(D)elete>");
-                    var consoleKeyInfo = Console.ReadKey(true);
+                //if (count < 1)
+                //{
+                //    Console.WriteLine($"No users found matching the search term {choice}");
+                //    Thread.Sleep(2000);
+                //    isRunning = false;
+                //}
+                //else if (count >= 1)
+                //{
+                //    Console.Write("\n(D)elete>");
+                //    var consoleKeyInfo = Console.ReadKey(true);
 
-                    if (consoleKeyInfo.Key == ConsoleKey.D)
-                    {
+                //    if (consoleKeyInfo.Key == ConsoleKey.D)
+                //    {
                         //ClearLine();
                         //Console.Write("Delete>");
                         //var secChoice = Console.ReadLine();
@@ -88,25 +86,10 @@ namespace MenuShell.View
                         //            break;
                         //    }
                         //}
-                    }
-                }
+                //    }
+                //}
 
             } while (isRunning);
-        }
-
-        public static int xCoord, yCoord, y;
-
-        static void WriteAt(string s, int x, int y)
-        {
-            Console.SetCursorPosition(xCoord + x, yCoord + y);
-            Console.Write(s);
-        }
-
-        static void ClearLine()
-        {
-            Console.SetCursorPosition(0, Console.CursorTop);
-            Console.Write(new string(' ', Console.WindowWidth));
-            Console.SetCursorPosition(0, Console.CursorTop - 1);
         }
     }
 }
