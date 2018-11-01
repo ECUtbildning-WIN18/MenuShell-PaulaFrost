@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.SqlClient;
 using MenuShell.Domain;
 using MenuShell.Service;
 using MenuShell.View;

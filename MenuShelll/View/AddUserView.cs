@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using MenuShell.Service;
-using System.Linq;
-using System.Xml.Schema;
 
 namespace MenuShell.View
 {

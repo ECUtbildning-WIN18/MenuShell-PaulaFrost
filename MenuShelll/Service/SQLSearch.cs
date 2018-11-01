@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using MenuShell.Domain;
-using MenuShell.Service;
-using MenuShell.View;
 
 namespace MenuShell.Service
 {
@@ -26,8 +19,6 @@ namespace MenuShell.Service
                 connection.Open();
 
                 var reader = sqlCommand.ExecuteReader();
-
-                User user;
 
                 Console.WriteLine("Result:");
 
@@ -55,29 +46,71 @@ namespace MenuShell.Service
 
                 if (consoleKeyInfo.Key == ConsoleKey.D)
                 {
-                    //ClearLine();
-                    Console.Write("Delete>");
-                    var secChoice = Console.ReadLine();
-                    if (_users.ContainsKey(secChoice))
-                    {
-                        Console.WriteLine($"Delete user {secChoice}? (Y)es (N)o");
-                        var consoleKeyInfo2 = Console.ReadKey(true);
+                    ClearLine();
+                    Console.Write("Delete> ");
 
-                        switch (consoleKeyInfo2.Key)
+                    using (var connection = new SqlConnection(DatabaseHelper.connectionString))
+                    {
+                        queryString = "SELECT * FROM [User]";
+
+                        var sqlCommand = new SqlCommand(queryString, connection);
+                        connection.Open();
+
+                        var reader = sqlCommand.ExecuteReader();
+
+                        var secChoice = Console.ReadLine();
+
+                        while (reader.Read())
                         {
-                            case ConsoleKey.Y:
-                                _users.Remove(secChoice);
-                                Console.WriteLine($"User {secChoice} successfully deleted.");
-                                Thread.Sleep(2000);
-                                isRunning = false;
-                                break;
-                            case ConsoleKey.N:
-                                isRunning = false;
-                                break;
+                            DeleteUser(secChoice, reader);
                         }
+
+                        reader.Close();
                     }
                 }
             }
+        }
+
+        public void DeleteUser(string s, SqlDataReader reader)
+        {
+            using (var connection = new SqlConnection(DatabaseHelper.connectionString))
+            {
+                connection.Open();
+
+                if (reader["UserName"].ToString().Contains(s))
+                {
+                Console.WriteLine($"Delete user {s}? (Y)es (N)o");
+                var consoleKeyInfo2 = Console.ReadKey(true);
+
+                switch (consoleKeyInfo2.Key)
+                {
+                    case ConsoleKey.Y:
+
+
+                        var sqlQuery = string.Format("DELETE from [User] WHERE [UserName] = '{0}'", s);
+
+                        var command = new SqlCommand(sqlQuery, connection);
+                        command.ExecuteNonQuery();
+                        command.Dispose();
+                        connection.Close();
+                        connection.Dispose();
+
+                        Console.WriteLine($"User {s} successfully deleted.");
+                        Thread.Sleep(2000);
+                        return;
+                    case ConsoleKey.N:
+                        break;
+                    }
+                }
+            }
+        }
+
+        public static void ClearLine()
+        {
+            int currentLineCursor = Console.CursorTop;
+            Console.SetCursorPosition(0, Console.CursorTop);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, currentLineCursor);
         }
     }
 }

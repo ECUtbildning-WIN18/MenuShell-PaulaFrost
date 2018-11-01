@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 using MenuShell.Domain;
-using MenuShell.Service;
 using MenuShell.Service;
 
 namespace MenuShell.View
@@ -29,8 +26,8 @@ namespace MenuShell.View
             var isRunning = true;
             var count = 0;
 
-            do
-            {
+            //do
+            //{
                 base.Display();
 
                 Console.WriteLine("Search by username:");
@@ -41,6 +38,7 @@ namespace MenuShell.View
                 var sqlSearch = new SQLSearch();
 
                 sqlSearch.SearchUser(choice);
+
 
                 //foreach(var user in _users)
                 //{
@@ -89,7 +87,7 @@ namespace MenuShell.View
                 //    }
                 //}
 
-            } while (isRunning);
+            //} while (isRunning);
         }
     }
 }
