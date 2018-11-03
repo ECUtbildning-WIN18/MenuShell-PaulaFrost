@@ -1,5 +1,4 @@
 ﻿using MenuShell.Domain;
-using MenuShell.Service;
 using MenuShell.View;
 
 namespace MenuShell
@@ -8,28 +7,22 @@ namespace MenuShell
     {
         static void Main(string[] args)
         {
-            var userLoader = new XMLUserLoader();
-
-            var authenticationService = new AuthenticationService(userLoader);
-
-            var loginView = new LoginView(authenticationService);
-
+            var loginView = new LoginView();
+            
             var validUser = loginView.Display();
-
-            var users = userLoader.LoadUsers();
 
             if (validUser.Role == Role.Administrator)
             {
-                var adminView = new SystemAdministratorView(users);
+                var adminView = new SystemAdministratorView();
 
                 adminView.Display();
             }
             else if (validUser.Role == Role.Receptionist)
             {
-                var receptionistView = new ReceptionistMainMenuView(users);
+                var receptionistView = new ReceptionistMainMenuView();
 
                 receptionistView.Display();
             }
-        }
+        } 
     }
 }

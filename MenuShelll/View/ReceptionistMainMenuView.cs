@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using MenuShell.Domain;
 
 namespace MenuShell.View
 {
     class ReceptionistMainMenuView : ConsoleView
     {
-        private IDictionary<string, User> _users;
-
-        public ReceptionistMainMenuView(IDictionary<string, User> users)
-        {
-            _users = users;
-        }
-
-        public override string Display()
+        public override void Display()
         {
             bool isRunning = true;
 
@@ -30,12 +21,18 @@ namespace MenuShell.View
                 switch (consoleKeyInfo.Key)
                 {
                     case ConsoleKey.D1:
-                        var listUsers = new ListUsersView(_users);
+
+                        var listUsers = new ListUsersView();
+
                         listUsers.Display();
+
                         break; 
+
                     case ConsoleKey.D2:
+
                         isRunning = false;
                         break;
+
                     default:
                         Console.WriteLine("Choose between (1) or (2)..");
                         Console.ReadKey();
@@ -43,8 +40,6 @@ namespace MenuShell.View
                 }
 
             } while (isRunning);
-
-            return "";
         }
     }
 }

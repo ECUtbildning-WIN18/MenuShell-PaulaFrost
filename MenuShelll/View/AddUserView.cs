@@ -1,19 +1,12 @@
 ﻿using MenuShell.Domain;
 using System;
-using System.Collections.Generic;
+using MenuShell.EntityFramework;
 
 namespace MenuShell.View
 {
     class AddUserView : ConsoleView
     {
-        private readonly IDictionary<string, User> _users;
-
-        public AddUserView(IDictionary<string, User> users)
-        {
-            _users = users;
-        }
-
-        public override string Display()
+        public override void Display()
         {
             bool isRunning = true;
 
@@ -39,19 +32,22 @@ namespace MenuShell.View
 
                 var user = new User(username, password, (Role) Enum.Parse(typeof(Role), role));
 
-                if (!_users.ContainsKey(user.UserName))
+                if (consoleKeyInfo.Key == ConsoleKey.Y)
                 {
-                    _users.Add(user.UserName, user);
+                    var newUser = new HelperEF();
+                    newUser.SaveUser(user);
 
                     isRunning = false;
                 }
+                else if (consoleKeyInfo.Key == ConsoleKey.N)
+                {
+                    isRunning = false;
+                }
 
-            } while(isRunning);
-            
-            return " ";
+            } while (isRunning);
         }
 
-        public static int xCoord, yCoord, y;
+    public static int xCoord, yCoord, y;
 
         static void WriteAt(string s, int x, int y)
         {

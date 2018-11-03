@@ -2,10 +2,16 @@
 {
     public class User
     {
-        public string UserName { get; }
-        public string Password { get; }
-        public Role Role { get; }
-        
+        public int Id { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public Role Role { get; set; }
+
+        public User()
+        {
+
+        }
+
         public User(string username, string password, Role role)
         {
             UserName = username;

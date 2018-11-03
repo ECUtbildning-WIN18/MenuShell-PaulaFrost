@@ -1,28 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using MenuShell.Domain;
 
 namespace MenuShell.View
 {
     class ManageUsersView : ConsoleView
     {
-        private readonly IDictionary<string, User> _users;
-
-        public ManageUsersView(IDictionary<string, User> users)
-        {
-            _users = users;
-        }
-
-        public override string Display()
+        public override void Display()
         {
             bool isRunning = true;
 
             do
             {
                 base.Display();
+
                 Console.WriteLine("# Manage user\n");
                 Console.WriteLine("1. Add user");
-                Console.WriteLine("2. Delete user");
+                Console.WriteLine("2. Search user");
 
                 Console.WriteLine("\n>");
 
@@ -32,23 +24,25 @@ namespace MenuShell.View
                 switch (consoleKeyInfo.Key)
                 {
                     case ConsoleKey.D1:
-                        var addUser = new AddUserView(_users);
+
+                        var addUser = new AddUserView();
                         addUser.Display();
                         break;
+
                     case ConsoleKey.D2:
-                        var deleteUser = new DeleteUserView(_users);
-                        deleteUser.Display();
+                        var searchUser = new SearchUserView();
+                        searchUser.Display();
                         break;
+
                     case ConsoleKey.Escape:
                         isRunning = false;
                         break;
+
                     default:
                         break;
                 }
 
             } while (isRunning);
-
-            return "";
         }
 
         public static int xCoord, yCoord, y;
