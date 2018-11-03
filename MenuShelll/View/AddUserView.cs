@@ -7,20 +7,6 @@ namespace MenuShell.View
 {
     class AddUserView : ConsoleView
     {
-        //private readonly IDictionary<string, User> _users;
-
-        //public AddUserView(IDictionary<string, User> users)
-        //{
-        //    _users = users;
-        //}
-
-        private readonly IList<User> _users;
-
-        public AddUserView(IList<User> users)
-        {
-            _users = users;
-        }
-
         public override void Display()
         {
             bool isRunning = true;

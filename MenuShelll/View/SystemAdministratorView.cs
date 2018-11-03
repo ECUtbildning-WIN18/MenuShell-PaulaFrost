@@ -15,12 +15,12 @@ namespace MenuShell.View
         //    _users = users;
         //}
 
-        private readonly IList<User> _users;
+        //private readonly IList<User> _users;
 
-        public SystemAdministratorView(IList<User> users)
-        {
-            _users = users;
-        }
+        //public SystemAdministratorView(IList<User> users)
+        //{
+        //    _users = users;
+        //}
 
         public override void Display()
         {
@@ -41,13 +41,13 @@ namespace MenuShell.View
                 switch (consoleKeyInfo.Key)
                 {
                     case ConsoleKey.D1:
-                        var manageUser = new ManageUsersView(_users);
+                        var manageUser = new ManageUsersView(/*_users*/);
                         manageUser.Display();
                         break;
                     case ConsoleKey.D2:
                         var authenticateUsers = new SQLLogin();
-                        var backToLogin = new LoginView(authenticateUsers);
-                        backToLogin.Display();
+                        //var backToLogin = new LoginView(authenticateUsers);
+                        //backToLogin.Display();
                         isRunning = false;
                         break;
                     default:

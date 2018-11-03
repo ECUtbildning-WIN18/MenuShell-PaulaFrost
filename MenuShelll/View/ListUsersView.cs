@@ -12,12 +12,12 @@ namespace MenuShell.View
         //    _users = users;
         //}
 
-        private readonly IList<User> _users;
+        //private readonly IList<User> _users;
 
-        public ListUsersView(IList<User> users)
-        {
-            _users = users;
-        }
+        //public ListUsersView(IList<User> users)
+        //{
+        //    _users = users;
+        //}
 
         public override void Display()
         {

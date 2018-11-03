@@ -1,5 +1,6 @@
 ﻿using System;
 using MenuShell.Domain;
+using MenuShell.EntityFramework;
 using MenuShell.Service;
 using MenuShell.View;
 
@@ -9,37 +10,21 @@ namespace MenuShell
     {
         static void Main(string[] args)
         {
-
-            //var displayUsers = new SQLDisplayUser();
-
-            //displayUsers.DisplayUsers();
-
-            //var userLoader = new XMLUserLoader();
-            var userLoader = new SQLLoader();
-
-            //var authenticationService = new AuthenticationService(userLoader);
-
-            var autheticateUsers = new SQLLogin();
-
-            var loginView = new LoginView(autheticateUsers);
-
+            var loginView = new LoginView();
+            
             var validUser = loginView.Display();
-
-            //var users = userLoader.LoadUsers();
-            var users = userLoader.UserLoaders();
 
             if (validUser.Role == Role.Administrator)
             {
-                var adminView = new SystemAdministratorView(users);
+                var adminView = new SystemAdministratorView();
 
                 adminView.Display();
             }
             else if (validUser.Role == Role.Receptionist)
             {
-                var receptionistView = new ReceptionistMainMenuView(users);
+                var receptionistView = new ReceptionistMainMenuView();
 
                 receptionistView.Display();
-
             }
 
             Console.WriteLine("Wazzup my Nagas!");

@@ -13,12 +13,12 @@ namespace MenuShell.View
         //    _users = users;
         //}
 
-        private readonly IList<User> _users;
+        //private readonly IList<User> _users;
 
-        public ReceptionistMainMenuView(IList<User> users)
-        {
-            _users = users;
-        }
+        //public ReceptionistMainMenuView(IList<User> users)
+        //{
+        //    _users = users;
+        //}
 
         public override void Display()
         {
@@ -37,7 +37,7 @@ namespace MenuShell.View
                 switch (consoleKeyInfo.Key)
                 {
                     case ConsoleKey.D1:
-                        var listUsers = new ListUsersView(_users);
+                        var listUsers = new ListUsersView(/*_users*/);
                         listUsers.Display();
                         break; 
                     case ConsoleKey.D2:
