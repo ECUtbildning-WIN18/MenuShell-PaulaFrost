@@ -2,7 +2,6 @@
 using System;
 using System.Threading;
 using MenuShell.EntityFramework;
-using MenuShell.Service;
 
 namespace MenuShell.View
 {
@@ -43,6 +42,10 @@ namespace MenuShell.View
                 else if (consoleKeyInfo.Key == ConsoleKey.N)
                 {
 
+                }
+                else if (consoleKeyInfo.Key == ConsoleKey.Escape)
+                {
+                    Environment.Exit(0);
                 }
 
             } while (validUser == null);

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using MenuShell.Domain;
 
 namespace MenuShell.View
 {
@@ -13,6 +11,7 @@ namespace MenuShell.View
             do
             {
                 base.Display();
+
                 Console.WriteLine("# Manage user\n");
                 Console.WriteLine("1. Add user");
                 Console.WriteLine("2. Search user");
@@ -25,16 +24,20 @@ namespace MenuShell.View
                 switch (consoleKeyInfo.Key)
                 {
                     case ConsoleKey.D1:
+
                         var addUser = new AddUserView();
                         addUser.Display();
                         break;
+
                     case ConsoleKey.D2:
                         var searchUser = new SearchUserView();
                         searchUser.Display();
                         break;
+
                     case ConsoleKey.Escape:
                         isRunning = false;
                         break;
+
                     default:
                         break;
                 }

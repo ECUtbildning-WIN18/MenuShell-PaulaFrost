@@ -24,6 +24,19 @@ namespace MenuShell.EntityFramework
             }
         }
 
+        public void DeleteUserByUsername(string username)
+        {
+            using (var db = new MenuShellDbContext())
+            {
+                var foundUser = db.Users.First(x => x.UserName == username);
+
+                if (foundUser == null) return;
+
+                db.Users.Remove(foundUser);
+                db.SaveChanges();
+            }
+        }
+
         public void ListUsers()
         {
             using (var db = new MenuShellDbContext())
@@ -36,18 +49,5 @@ namespace MenuShell.EntityFramework
                 }
             }
         }
-
-        public void DeleteUserByUsername(string username)
-        {
-            using (var db = new MenuShellDbContext())
-            {
-                var foundUser = db.Users.First(x => x.UserName == username);
-
-                if (foundUser == null) return;
-
-                db.Users.Remove(foundUser);
-                db.SaveChanges();
-            }
-        } 
     }
 }

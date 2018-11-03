@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using MenuShell.Domain;
 
 namespace MenuShell.View
 {
@@ -23,12 +21,18 @@ namespace MenuShell.View
                 switch (consoleKeyInfo.Key)
                 {
                     case ConsoleKey.D1:
+
                         var listUsers = new ListUsersView();
+
                         listUsers.Display();
+
                         break; 
+
                     case ConsoleKey.D2:
+
                         isRunning = false;
                         break;
+
                     default:
                         Console.WriteLine("Choose between (1) or (2)..");
                         Console.ReadKey();

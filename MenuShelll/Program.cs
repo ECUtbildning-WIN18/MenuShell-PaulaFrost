@@ -1,7 +1,4 @@
-﻿using System;
-using MenuShell.Domain;
-using MenuShell.EntityFramework;
-using MenuShell.Service;
+﻿using MenuShell.Domain;
 using MenuShell.View;
 
 namespace MenuShell
@@ -26,9 +23,6 @@ namespace MenuShell
 
                 receptionistView.Display();
             }
-
-            Console.WriteLine("Wazzup my Nagas!");
-            Console.ReadKey();
         } 
     }
 }

@@ -1,8 +1,6 @@
 ﻿using MenuShell.Domain;
 using System;
-using System.Collections.Generic;
 using MenuShell.EntityFramework;
-using MenuShell.Service;
 
 namespace MenuShell.View
 {

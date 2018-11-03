@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using MenuShell.Domain;
+﻿using MenuShell.Domain;
 
 namespace MenuShell.EntityFramework
 {
