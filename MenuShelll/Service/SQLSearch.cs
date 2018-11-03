@@ -86,7 +86,6 @@ namespace MenuShell.Service
                 {
                     case ConsoleKey.Y:
 
-
                         var sqlQuery = string.Format("DELETE from [User] WHERE [UserName] = '{0}'", s);
 
                         var command = new SqlCommand(sqlQuery, connection);

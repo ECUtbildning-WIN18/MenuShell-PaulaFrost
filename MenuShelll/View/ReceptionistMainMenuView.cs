@@ -6,20 +6,6 @@ namespace MenuShell.View
 {
     class ReceptionistMainMenuView : ConsoleView
     {
-        //private IDictionary<string, User> _users;
-
-        //public ReceptionistMainMenuView(IDictionary<string, User> users)
-        //{
-        //    _users = users;
-        //}
-
-        //private readonly IList<User> _users;
-
-        //public ReceptionistMainMenuView(IList<User> users)
-        //{
-        //    _users = users;
-        //}
-
         public override void Display()
         {
             bool isRunning = true;
@@ -37,7 +23,7 @@ namespace MenuShell.View
                 switch (consoleKeyInfo.Key)
                 {
                     case ConsoleKey.D1:
-                        var listUsers = new ListUsersView(/*_users*/);
+                        var listUsers = new ListUsersView();
                         listUsers.Display();
                         break; 
                     case ConsoleKey.D2:

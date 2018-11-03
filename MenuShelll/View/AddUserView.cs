@@ -1,6 +1,7 @@
 ﻿using MenuShell.Domain;
 using System;
 using System.Collections.Generic;
+using MenuShell.EntityFramework;
 using MenuShell.Service;
 
 namespace MenuShell.View
@@ -35,10 +36,9 @@ namespace MenuShell.View
 
                 if (consoleKeyInfo.Key == ConsoleKey.Y)
                 {
-                    var sqlAddUser = new SQLAddUser();
-                    sqlAddUser.AddUser(user);
+                    var newUser = new HelperEF();
+                    newUser.SaveUser(user);
 
-                    //var addUser = new AddUserView(user);
                     isRunning = false;
                 }
                 else if (consoleKeyInfo.Key == ConsoleKey.N)

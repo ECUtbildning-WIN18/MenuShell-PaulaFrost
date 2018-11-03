@@ -48,8 +48,6 @@ namespace MenuShell.EntityFramework
                 db.Users.Remove(foundUser);
                 db.SaveChanges();
             }
-        }
-
-        
+        } 
     }
 }

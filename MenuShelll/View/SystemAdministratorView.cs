@@ -1,27 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using MenuShell.Domain;
+using MenuShell.EntityFramework;
 using MenuShell.Service;
 
 namespace MenuShell.View
 {
     class SystemAdministratorView : ConsoleView
     {
-        //private readonly IDictionary<string, User> _users;
-        //private readonly IAuthenticationService authenticationService;
-
-        //public SystemAdministratorView(IDictionary<string, User> users)
-        //{
-        //    _users = users;
-        //}
-
-        //private readonly IList<User> _users;
-
-        //public SystemAdministratorView(IList<User> users)
-        //{
-        //    _users = users;
-        //}
-
         public override void Display()
         {
             bool isRunning = true;
@@ -41,13 +27,12 @@ namespace MenuShell.View
                 switch (consoleKeyInfo.Key)
                 {
                     case ConsoleKey.D1:
-                        var manageUser = new ManageUsersView(/*_users*/);
+                        var manageUser = new ManageUsersView();
                         manageUser.Display();
                         break;
                     case ConsoleKey.D2:
-                        var authenticateUsers = new SQLLogin();
-                        //var backToLogin = new LoginView(authenticateUsers);
-                        //backToLogin.Display();
+                        var backToLogin = new LoginView();
+                        backToLogin.Display();
                         isRunning = false;
                         break;
                     default:
