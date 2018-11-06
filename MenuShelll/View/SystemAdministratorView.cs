@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using MenuShell.Domain;
 
 namespace MenuShell.View
 {
     class SystemAdministratorView : ConsoleView
     {
-        private readonly IDictionary< string, User> _users;
-
-        public SystemAdministratorView(IDictionary<string, User> users)
-        {
-            _users = users;
-        }
-
-        public override string Display()
+        public override void Display()
         {
             bool isRunning = true;
 
@@ -32,10 +23,12 @@ namespace MenuShell.View
                 switch (consoleKeyInfo.Key)
                 {
                     case ConsoleKey.D1:
-                        var manageUser = new ManageUsersView(_users);
+                        var manageUser = new ManageUsersView();
                         manageUser.Display();
                         break;
                     case ConsoleKey.D2:
+                        var backToLogin = new LoginView();
+                        backToLogin.Display();
                         isRunning = false;
                         break;
                     default:
@@ -43,8 +36,6 @@ namespace MenuShell.View
                 }
 
             } while (isRunning);
-            
-            return "";
         }
 
         public static int xCoord, yCoord, y;

@@ -1,43 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using MenuShell.Domain;
+using MenuShell.EntityFramework;
 
 namespace MenuShell.View
 {
     class ListUsersView : ConsoleView
     {
-        private readonly IDictionary<string, User> _users;
-
-        public ListUsersView(IDictionary<string, User> users)
-        {
-            _users = users;
-        }
-
-        public override string Display()
+        public override void Display()
         {
             bool isRunning = true;
 
             do
             {
-                base.Display();
+                var entityHelper = new HelperEF();
 
-                Console.WriteLine("# User list\n");
-                foreach (var user in _users)
-                {
-                    Console.WriteLine(user.Value.UserName);
-                }
+                entityHelper.ListUsers();
 
-                Console.WriteLine("\nPress Escape to get back..");
-                var consoleKeyInfo = Console.ReadKey();
+                Console.WriteLine("\nPress any key to go back...");
+                Console.ReadKey();
 
-                if (consoleKeyInfo.Key == ConsoleKey.Escape)
-                {
-                    isRunning = false;
-                }
+                isRunning = false;
 
             } while (isRunning);
-
-            return "";
         }
     }
 }

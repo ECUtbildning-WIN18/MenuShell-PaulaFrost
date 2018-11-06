@@ -1,19 +1,12 @@
 ﻿using MenuShell.Domain;
 using System;
 using System.Threading;
-using MenuShell.Service;
+using MenuShell.EntityFramework;
 
 namespace MenuShell.View
 {
     public class LoginView
     {
-        private readonly IAuthenticationService _authenticationService;
-
-        public LoginView(IAuthenticationService authenticationService)
-        {
-            _authenticationService = authenticationService;
-        }
-
         public User Display()
         {
             User validUser = null;
@@ -36,9 +29,10 @@ namespace MenuShell.View
 
                 if (consoleKeyInfo.Key == ConsoleKey.Y)
                 {
-                    validUser = _authenticationService.Authenticate(username, password);
+                    var authenticate = new EFLogin();
+                    validUser = authenticate.AuthenticateUser(username, password);
 
-                    if(validUser == null)
+                    if (validUser == null)
                     {
                         Console.Clear();
                         Console.WriteLine("Login failed, please try again!");
@@ -48,6 +42,10 @@ namespace MenuShell.View
                 else if (consoleKeyInfo.Key == ConsoleKey.N)
                 {
 
+                }
+                else if (consoleKeyInfo.Key == ConsoleKey.Escape)
+                {
+                    Environment.Exit(0);
                 }
 
             } while (validUser == null);
